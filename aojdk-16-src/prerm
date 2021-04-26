@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+set -e
+
+jdk_tools="jar jarsigner javac javadoc javap jcmd jdb jdeprscan jdeps jfr jimage jinfo jlink jmap jmod jps jrunscript jshell jstack jstat jstatd serialver jhsdb jconsole"
+basedir=/usr/lib/jvm/java-16-adoptopenjdk-armhf
+
+if [ "$1" = "remove" ] || [ "$1" = "deconfigure" ]; then
+    for i in $jdk_tools; do
+	update-alternatives --remove $i $basedir/bin/$i
+    done
+fi
+
+
